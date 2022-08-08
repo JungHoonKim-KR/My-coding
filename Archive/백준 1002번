@@ -1,0 +1,78 @@
+기하는 역시 그리면서 해보는게 좋다는걸 깨닫게 해준 문제
+메소드를 직접 선언해서 하려고 했지만 main문에 직접 구현해도 크게 난잡하지 않아서 저렇게 했다.
+처음에는 0<testcase<t -10000<x<10000 -10000<y<10000 으로 3중 for문을 만들어 무식하게 짯는데 내가 생각해도 멍청한 코드였다. case를 떠올리는게 여간 쉬운일이 아니다.
+
+import java.io.*;
+import java.lang.String;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        //문제 받기
+        int t=Integer.parseInt(br.readLine());
+        int a_x[]=new int[t];
+        int a_y[]=new int[t];
+        int a_r[]=new int[t];
+        int b_x[]=new int[t];
+        int b_y[]=new int[t];
+        int b_r[]=new int[t];
+        StringTokenizer st;
+        for (int i=0;i<t;i++){
+            st=new StringTokenizer(br.readLine());
+            a_x[i]=Integer.parseInt(st.nextToken());
+            a_y[i]=Integer.parseInt(st.nextToken());
+            a_r[i]=Integer.parseInt(st.nextToken());
+            b_x[i]=Integer.parseInt(st.nextToken());
+            b_y[i]=Integer.parseInt(st.nextToken());
+            b_r[i]=Integer.parseInt(st.nextToken());
+        }
+        // 해결
+        for(int j=0;j<t;j++){
+            //case 1 중심과 반지름의 길이가 같을때
+            if(a_x[j]==b_x[j]&&a_y[j]==b_y[j]&&a_r[j]==b_r[j])
+                System.out.println(-1);
+            
+            //case 2 내부에 있지만 접하지 않을때
+            else if(Math.pow(a_x[j]-b_x[j],2)+Math.pow(a_y[j]-b_y[j],2)<Math.pow(a_r[j]-b_r[j],2))
+                System.out.println(0);
+
+            // case 2 내접
+            else if(Math.pow(a_x[j]-b_x[j],2)+Math.pow(a_y[j]-b_y[j],2)==Math.pow(a_r[j]-b_r[j],2))
+                System.out.println(1);
+            // case 4 외접
+            else if(Math.pow(a_x[j]-b_x[j],2)+Math.pow(a_y[j]-b_y[j],2)==Math.pow(a_r[j]+b_r[j],2))
+                System.out.println(1);
+            // case 5 외부에 있지만 접하지 않을때
+            else if(Math.pow(a_x[j]-b_x[j],2)+Math.pow(a_y[j]-b_y[j],2)>Math.pow(a_r[j]+b_r[j],2))
+                System.out.println(0);
+            else System.out.println(2);
+
+
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
