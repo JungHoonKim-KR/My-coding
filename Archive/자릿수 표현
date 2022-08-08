@@ -1,0 +1,8 @@
+String.format을 통해 소수점 n번째 자리까지 반올림 하여 표현 가능
+물론 Math.round()로도 가능함 
+
+ex) 소수점 둘 째자리까지 표현
+1.Math.round(3.141592*100)/100
+2.String.format("0.2f",3.141592)
+난 String.format이 더 편하다
+
