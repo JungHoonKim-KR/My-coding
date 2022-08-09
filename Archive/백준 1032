@@ -1,0 +1,52 @@
+모든 약수라는 말에 빠져 최소공배수를 구하려고 하다보니 늪에 빠지게 되었다. 
+arr[0]*arr[1]/(arr[0]과arr[1]의 최대 공약수)를 통해 답을 구해보려 했지만 결국 이건 원래 우리가 아는 최소 공배수를 구하는 방식일뿐 
+자신을 "제외한" 모든 약수가 포인트.
+수를 나열해본 결과 내가 얻은 결론은 "min(약수)*max(약수)==모든 약수들의 최소 공배수"
+
+
+import java.io.*;
+import java.lang.String;
+import java.util.*;
+import java.util.stream.IntStream;
+
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        //문제 받기
+        int n=Integer.parseInt(br.readLine());
+        int a[]=new int[n];
+
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        for(int i=0;i<n;i++){
+         a[i]=Integer.parseInt(st.nextToken());
+        }
+        //해결
+         System.out.println(Arrays.stream(a).max().getAsInt()*Arrays.stream(a).min().getAsInt());
+       
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
