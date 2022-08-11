@@ -1,0 +1,12 @@
+  for(int i=0;i<arr.length;i++){
+            for(int j=0;j<=i;j++){
+            //j<=i 중요
+                if(i==j||j==0){
+                //삼각형의 변은 1로 구성되기 떄문
+                    arr[i][j]=1;
+                }
+                else arr[i][j]=arr[i-1][j-1]+arr[i-1][j];
+            }
+        }
+        System.out.println(arr[a][b]);
+        
