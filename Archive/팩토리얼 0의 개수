@@ -10,3 +10,7 @@
             result+=a/5;
             a/=5;
         }
+           while(a_copy>=2){
+                result2+=a_copy/2;
+                a_copy/=2;
+            }
