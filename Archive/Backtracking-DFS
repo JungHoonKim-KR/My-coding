@@ -1,0 +1,19 @@
+     public static void dfs(int dep){
+            if(dep==M){ //최대 깊이에 도달하면 출력
+                for(int value:arr){
+                    System.out.print(value+" ");
+                }
+                System.out.println();
+                return;
+            }
+            for(int i=0;i<N;i++){
+                if(!visit[i])
+                {
+                    visit[i]=true;
+                    arr[dep]=i+1;
+                    dfs(dep+1); //i번에 방문기록이 남았기 때문에 다음 깊이의 실행에서 i번은 제외된다.
+                    visit[i]=false; // i==0에서 모든 깊이의 탐색(실행)이 완료되면 i=1로 넘어가 탐색을 계속한다.(i=0,1,2.....N)
+                }
+            }
+        }
+    }
