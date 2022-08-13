@@ -1,0 +1,21 @@
+이전 DFS 코드에서 시작점을 제어할 변수 하나를 추가한다.
+
+ public static void dfs(int dep,int start){ // start 변수를 추가하여 다음 깊이의 반복문 시작점을 제어한다.
+            if(dep==M){
+                for(int i:arr){
+
+                    System.out.print(i+" ");
+                }
+                System.out.println();
+                return;
+            }
+            for(int i=start;i<N;i++){ //이전 깊이보다 큰 수만 실행됨
+                if(!visit[i])
+                {
+                    visit[i]=true;
+                    arr[dep]=i+1;
+                    dfs(dep+1,i+1);
+                    visit[i]=false;
+                }
+            }
+        }
