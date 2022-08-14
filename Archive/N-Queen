@@ -1,0 +1,88 @@
+개인적으로 백트래킹은 재귀가 섞여 있어서 이해가 어렵다. 이 문제가 백트레킹의 대표 문제라고 하는데 이해는 빨리 했지만 코드를 어떻게 짜야 할지 막막했다.
+특히나 재귀는 코드 짜기가 제일 어렵다. 막상 완성본을 보면 이렇게 이렇게 동작이 되겠구나 하는데 처음 짜려고 할 때는 감이 안온다.
+
+처음에 생각난 방법은 2차원 배열이였다. 채스판이니 nxx을 떠올리면 2차원 배열이 생각나는게 당연하다고 생각한다.
+하지만 1차원 배열과 로직은 같은데 코드를 못짜겠어서 1차원 배열로 갈아탔다.
+코드를 최대한 내 스스로 짜려고 하는 스타일인데 한참을 고민해도 모르겠어서 자존심을 굽히고 블로그의 도움을 받았다.
+
+import java.io.*;
+import java.lang.String;
+import java.util.*;
+
+public class Main {
+    static int N;
+    static int count;
+    static int arr[];
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        //문제 받기
+        N = Integer.parseInt(br.readLine());
+        count = 0;
+        //nxn의 boolean 배열을 만든다
+        arr = new int[N];
+        dfs(0);
+        System.out.println(count);
+    }
+
+    public static void dfs(int depth) {
+        if (depth == N) {
+            count++;
+            return;
+        }
+        for (int i = 0; i < N; i++) {
+            arr[depth] = i; // arr안에 우선 값을 넣은 후에 비교를 해야 비교가 된다.(그래야 if문에서 넣어본 자리가 맞는 자리인지 비교할 수 있다. 만약 안넣는다면 초기값은 무조건 0이기 때문에 i가 N까지 돌 때까지 0번 열만 비교할 것이다.)
+            if (proof(depth)) {//true일때 즉 놓을 수 있는 자리일때
+                dfs(depth + 1);
+            }
+        }
+    }
+
+    public static boolean proof(int depth) {
+        for (int i = 0; i < depth; i++) {
+            if (arr[i] == arr[depth])
+                return false;
+
+            if (Math.abs(depth - i) == Math.abs(arr[depth] - (arr[i])))
+                return false;
+        }
+        return true;
+    }
+}
+
+블로그를 봐도 이해가 안갔던건 45번줄과 36번 줄이었다. 
+우선 45줄은 index를 행, 값을 열로 생각하는 것인데 왜 난 열만 비교하고 행은 비교하지 않는지가 의문이였는데,
+38번줄을 보면 depth번째 행에 i번째 열에 퀸을 놓고 depth+1번으로 넘어가기 때문에 같은 행에 다른 퀸이 있는지 비교할 이유가 없다.
+그 다음 36번줄이 왜 if문 밖에 있는지가 의문이었다.
+놓을 수 있는자리 일때 그 자리에 놓아야 하는데 왜 놓고 나서 확인하는지 이해가 안갔는데
+1. proof를 보면 놓여진 자리와 놓은 자리가 겹치는지를 비교한다. 그런데 놓지 않고 비교부터 하면 초기값이 0이기 때문에 어떤 행이든 0번쨰 열에 놓여있다고 인식할 것이다.
+2. 0번째 행 0번째 열에 첫 퀸을 놓고 두번째 퀸을 호출하면 두번째 퀸은 1번째 행 0번쨰 열에 놓은 후에 가능한지 체크할 것인데 어차피 못놓으니 false가 return되고 다음 재귀문이   
+  실행되지 않아 1번째 행이 놓을 수 있는 열을 찾을 때까지 계속 for문이 돌아간다.
+  
+개발자들 정말 존경스럽다. 처음으로 재능의 벽을 느낀 문제였다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
