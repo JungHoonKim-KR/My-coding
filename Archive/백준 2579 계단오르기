@@ -1,0 +1,17 @@
+이런 동적계획법 문제는 내가 직접 경우의 수를 적어가며 일정한 규칙을 찾는게 중요하다.(점화식 설정)
+
+DP[1]=arr[1][
+DP[2]=arr[1]+arr[2] or arr[2] (사실상 arr는 자연수르 구성되어 있어서 arr[2]는 제외한다고 봐야함)
+DP[3]=arr[1]+arr[3] or arr[2]+arr[3]
+DP[4]=arr[1]+arr[2]+arr[4] or arr[1]+arr[2]+arr[4] or arr[2]+arr[4]
+DP[5]=arr[1]+arr[2]+arr[4]+arr[5] or arr[1]+arr[3]+arr[5] or arr[2]+arr[3]+arr[5] or arr[2]+arr[4]+arr[5]
+이런식으로 나열되는데 
+나는 단순히 DP[N]=DP[N-2]+arr[N] or DP[N-1]+arr[N] 이렇게 점화식을 세웠다.
+이 식의 문제점은 바로 DP[3]=arr[1]+arr[3] or arr[2]+arr[3] 여기서 나타나는데
+DP[3]이 arr[1]+arr[3] arr[2]+arr[3] 둘 중 하나의 경우를 갖게 되는데
+예를 들어 
+DP[3]=arr[2]+arr[3] 이라면 
+DP[4]에서 DP[N-1]+arr[N]의 점화식을 따르는 arr[1]+arr[2]+arr[4]과 arr[1]+arr[2]+arr[4]는
+엉뚱한 경우를 가지게 되는 것이다.
+실제로 저렇게 식을 세웠더니 모든 값을 더한 답이 나왔다.
+이를 방지하기 위해 점화식 DP[N-1]+arr[N]을 DP[N-3]+arr[N-1]+arr[N}으로 세워주면 된다.
