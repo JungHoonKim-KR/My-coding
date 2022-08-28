@@ -1,0 +1,16 @@
+<!DOCTYPE html> : 문서의 유형을 지정하는 태그
+<html> : html의 시작을 알리는 태그
+<title> : 웹 페이지의 제목
+<meta charset> : 해당 문서의 인코딩 방식 (거의 utf-8 사용)
+<head> : 문서의 정보? 등을 나타내는 머릿말 태그
+<body> : 문서의 내용
+<p> : print 역할 각 p태그 마다 공백이 생김(enter)
+<br> : enter공백을 사용하기 위한 태그
+&nbsp : spacebar
+<h1~6> : 제목 태그로 h1이 제일 큼
+<style> : 다양한 스타일 사용 가능 (아직 color밖에 쓸 줄 모름)
+<strong> : 텍스트 강조
+<mark> : 형관펜 역할
+<img> : 원하는 이미지를 웹상의 url이나 내 파일을 이용해 표시
+
+
